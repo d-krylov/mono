@@ -321,3 +321,4 @@ jitdiff:
 
 distdir:
 distclean:
+install:
