@@ -155,9 +155,9 @@ echo "Running autoconf ..."
 autoconf || { echo "**Error**: autoconf failed."; exit 1; }
 
 # Update all submodules recursively to ensure everything is checked out
-if test -e $srcdir/scripts/update_submodules.sh; then
-  (cd $srcdir && scripts/update_submodules.sh)
-fi
+#if test -e $srcdir/scripts/update_submodules.sh; then
+#  (cd $srcdir && scripts/update_submodules.sh)
+#fi
 
 if test x$has_disable_boehm = xfalse -a -d $srcdir/external/bdwgc; then
   echo Running external/bdwgc/autogen.sh ...
