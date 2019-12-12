@@ -31,6 +31,9 @@ BuildRequires:  libopenssl-64bit
 BuildRequires:  python
 BuildRequires:  cmake
 BuildRequires:  coreclr
+BuildRequires:  llvm >= 6.0
+BuildRequires:  llvm-devel >= 6.0
+BuildRequires:  zlib-devel
 
 # Accelerate python
 %ifarch %{arm}
@@ -92,7 +95,7 @@ done
 %{?asan:/usr/bin/gcc-unforce-options}
 %{?asan:export LD_LIBRARY_PATH=`pwd`/libicu-57.1}
 
-./autogen.sh --with-core=only --prefix=%{netcoreappdir}
+./autogen.sh --with-core=only --enable-llvm=yes --with-llvm=/usr --prefix=%{netcoreappdir}
 touch netcore/.configured
 
 export NUGET_PACKAGES=`pwd`/.packages
