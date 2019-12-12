@@ -5650,6 +5650,12 @@ add_generic_instances (MonoAotCompile *acfg)
 			insts [ninsts ++] = uint32_type;
 			insts [ninsts ++] = uint16_type;
 			insts [ninsts ++] = byte_type;
+#ifdef ENABLE_NETCORE
+			insts [ninsts ++] = int16_type;
+			insts [ninsts ++] = sbyte_type;
+			insts [ninsts ++] = int64_type;
+			insts [ninsts ++] = uint64_type;
+#endif
 			enum_comparer = mono_class_load_from_name (mono_defaults.corlib, "System.Collections.Generic", "EnumEqualityComparer`1");
 			add_instances_of (acfg, enum_comparer, insts, ninsts, FALSE);
 
