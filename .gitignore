@@ -146,6 +146,6 @@ tools/offsets-tool-py/clang/__pycache__
 # Arcade output directories
 ##############################################################################
 
-.packages
+
 artifacts
-.dotnet
+

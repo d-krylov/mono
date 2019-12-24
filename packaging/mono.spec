@@ -1,6 +1,7 @@
 %{!?dotnet_buildtype: %define dotnet_buildtype Release}
 
 %define dotnet_version  3.0.0
+%define with_llvm       0
 
 Name:		mono
 Version:	6.0.0
@@ -31,8 +32,12 @@ BuildRequires:  libopenssl-64bit
 BuildRequires:  python
 BuildRequires:  cmake
 BuildRequires:  coreclr
+
+%if %{with_llvm} == 1
 BuildRequires:  llvm >= 6.0
 BuildRequires:  llvm-devel >= 6.0
+%endif
+
 BuildRequires:  zlib-devel
 
 # Accelerate python
@@ -95,7 +100,12 @@ done
 %{?asan:/usr/bin/gcc-unforce-options}
 %{?asan:export LD_LIBRARY_PATH=`pwd`/libicu-57.1}
 
+%if %{with_llvm} == 1
 ./autogen.sh --with-core=only --enable-llvm=yes --with-llvm=/usr --prefix=%{netcoreappdir}
+%else
+./autogen.sh --with-core=only --prefix=%{netcoreappdir}
+%endif
+
 touch netcore/.configured
 
 export NUGET_PACKAGES=`pwd`/.packages
